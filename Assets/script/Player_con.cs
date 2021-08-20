@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class Player_con : MonoBehaviour
 {
+    public bool ispc = false;
     private Animator anim;
-    private bool isjump = false;
+    public bool isjump = false;
     Rigidbody rb;
     private bool gimmick4 = false;
     public float speed_w = 10;
@@ -27,14 +28,22 @@ public class Player_con : MonoBehaviour
     private int R;
     [SerializeField] GameObject resultPanel;
     [SerializeField] GameObject clearPanel;
+    [SerializeField] GameObject up_button;
+    [SerializeField] GameObject down_button;
+    [SerializeField] GameObject left_button;
+    [SerializeField] GameObject right_button;
+    [SerializeField] GameObject jump_button;
+    bool right_flag = false;
+    bool left_flag = false;
+    bool walk_flag = false;
+    bool back_flag = false;
+    bool buttonpushing = false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         speed = 1;
         radius = 1;
-       
-         
     }
 
     // Update is called once per frame
@@ -43,12 +52,7 @@ public class Player_con : MonoBehaviour
         defPosition = transform.position;
         if (Input.GetKey(KeyCode.W))
         {
-            anim.SetBool("walk", true);
-            Vector3 force = new Vector3(0, 0, speed_w);
-            if (rb.velocity.magnitude < 10.0f)
-            {
-                rb.AddForce(force); 
-            }
+            iswalk();
         }
         else
         {
@@ -57,12 +61,7 @@ public class Player_con : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            anim.SetBool("back_walk", true);
-            Vector3 force = new Vector3(0, 0, speed_s);
-            if (rb.velocity.magnitude < 10.0f)
-            {
-                rb.AddForce(force); 
-            }
+            isbackwalk();
         }
         else
         {
@@ -71,12 +70,7 @@ public class Player_con : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            anim.SetBool("right_waik", true);
-            Vector3 force = new Vector3(speed_d, 0, 0);
-            if (rb.velocity.magnitude < 10.0f)
-            {
-                rb.AddForce(force);
-            }
+            isrightwalk();
         }
         else
         {
@@ -85,23 +79,16 @@ public class Player_con : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            anim.SetBool("left_walk", true);
-            Vector3 force = new Vector3(speed_a, 0, 0);
-            if (rb.velocity.magnitude < 10.0f)
-            {
-                rb.AddForce(force); 
-            }
+            isleftwalk();
         }
         else
         {
             anim.SetBool("left_walk", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isjump == true)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            anim.SetTrigger("jumpp");
-            //rb.velocity = new Vector3(0, 10, 0);
-            isjump = false;
+            isjumping();
         }
         else
         {
@@ -117,13 +104,112 @@ public class Player_con : MonoBehaviour
         if (resultPanel.activeSelf)
         {
             Time.timeScale = 0f;
-            //　ポーズUIが表示されてなければ通常通り進行
+         
         }
         else
         {
             Time.timeScale = 1f;
             
         }
+
+        if (right_flag)
+        {
+            
+            isrightwalk();
+        }
+
+        if (left_flag)
+        {
+            anim.SetBool("left_walk", true);
+            isleftwalk();
+        }
+
+        if (walk_flag)
+        {
+            anim.SetBool("walk", true);
+            iswalk();
+        }
+
+        if (back_flag)
+        {
+            anim.SetBool("back_walk", true);
+            isbackwalk();
+        }
+
+    }
+    public void right_change(bool flag)
+    {
+        right_flag = flag;
+    }
+
+    public void walk_change(bool flag)
+    {
+        walk_flag = flag;
+    }
+    
+    public void left_change(bool flag)
+    {
+        left_flag = flag;
+    }
+
+    public void back_change(bool flag)
+    {
+        back_flag = flag;
+    }
+
+    public void buttonpush()
+    {
+        buttonpushing = true;
+    }
+    
+    public void iswalk()
+    {
+        anim.SetBool("walk", true);
+        Vector3 force = new Vector3(0, 0, speed_w);
+        if (rb.velocity.magnitude < 10.0f)
+        {
+            rb.AddForce(force);
+        }
+    }
+
+    public void isbackwalk()
+    {
+        anim.SetBool("back_walk", true);
+        Vector3 force = new Vector3(0, 0, speed_s);
+        if (rb.velocity.magnitude < 10.0f)
+        {
+            rb.AddForce(force);
+        }
+    }
+
+    public void isrightwalk()
+    {
+        anim.SetBool("right_waik", true);
+        Vector3 force = new Vector3(speed_d, 0, 0);
+        if (rb.velocity.magnitude < 10.0f)
+        {
+            rb.AddForce(force);
+        }
+    }
+
+    public void isleftwalk()
+    {
+        anim.SetBool("left_walk", true);
+        Vector3 force = new Vector3(speed_a, 0, 0);
+        if (rb.velocity.magnitude < 10.0f)
+        {
+            rb.AddForce(force);
+        }
+    }
+
+    public void isjumping()
+    {
+        if (isjump)
+        {
+            anim.SetTrigger("jumpp");
+            isjump = false;
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -177,21 +263,32 @@ public class Player_con : MonoBehaviour
             Z = 198;
         }
 
+       
+
         if (collision.gameObject.tag == "Finish")
         {
-
+            up_button.SetActive(false);
+            down_button.SetActive(false);
+            right_button.SetActive(false);
+            left_button.SetActive(false);
+            jump_button.SetActive(false);
             resultPanel.SetActive(true);
         }
 
         if (collision.gameObject.tag == "Goal")
         {
             clearPanel.SetActive(true);
+            up_button.SetActive(false);
+            down_button.SetActive(false);
+            right_button.SetActive(false);
+            left_button.SetActive(false);
+            jump_button.SetActive(false);
         }
 
        
     }
 
-    void jump()
+    public void jump()
     {
         rb.velocity = new Vector3(0, 16, 0);
     }
@@ -233,9 +330,16 @@ public class Player_con : MonoBehaviour
 
     public void Restart()
     {
-
+        up_button.SetActive(true);
+        down_button.SetActive(true);
+        right_button.SetActive(true);
+        left_button.SetActive(true);
+        jump_button.SetActive(true);
         transform.position = new Vector3(X, Y, Z);
-
+        right_flag = false;
+        left_flag = false;
+        walk_flag = false;
+        back_flag = false;
     }
 
 

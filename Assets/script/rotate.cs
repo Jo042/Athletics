@@ -17,5 +17,7 @@ public class rotate : MonoBehaviour
         transform.Rotate(new Vector3(0, speed, 0)  );
         
     }
+
+
 }
 
