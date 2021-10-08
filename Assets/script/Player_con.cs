@@ -38,12 +38,20 @@ public class Player_con : MonoBehaviour
     bool walk_flag = false;
     bool back_flag = false;
     bool buttonpushing = false;
+    public static Player_con instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         speed = 1;
         radius = 1;
+
+        Restart();
     }
 
     // Update is called once per frame
@@ -104,17 +112,17 @@ public class Player_con : MonoBehaviour
         if (resultPanel.activeSelf)
         {
             Time.timeScale = 0f;
-         
+
         }
         else
         {
             Time.timeScale = 1f;
-            
+
         }
 
         if (right_flag)
         {
-            
+
             isrightwalk();
         }
 
@@ -146,7 +154,7 @@ public class Player_con : MonoBehaviour
     {
         walk_flag = flag;
     }
-    
+
     public void left_change(bool flag)
     {
         left_flag = flag;
@@ -161,7 +169,7 @@ public class Player_con : MonoBehaviour
     {
         buttonpushing = true;
     }
-    
+
     public void iswalk()
     {
         anim.SetBool("walk", true);
@@ -221,7 +229,7 @@ public class Player_con : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground")
         {
-           
+
             transform.SetParent(collision.transform);
         }
 
@@ -229,7 +237,7 @@ public class Player_con : MonoBehaviour
         {
             isjump = true;
         }
-       
+
         if (collision.gameObject.tag == "A")
         {
             R = Random.Range(1, 3);
@@ -238,7 +246,7 @@ public class Player_con : MonoBehaviour
                 Vector3 force = new Vector3(Random.Range(30, 40), 20, 0);
                 rb.AddForce(force, ForceMode.Impulse);
             }
-            if(R == 2)
+            if (R == 2)
             {
                 Vector3 force = new Vector3(Random.Range(-30, -40), 20, 0);
                 rb.AddForce(force, ForceMode.Impulse);
@@ -256,14 +264,14 @@ public class Player_con : MonoBehaviour
             Y = 3;
             Z = 125;
         }
-        
+
         if (collision.gameObject.tag == "save3")
         {
             Y = 3;
             Z = 198;
         }
 
-       
+
 
         if (collision.gameObject.tag == "Finish")
         {
@@ -285,12 +293,33 @@ public class Player_con : MonoBehaviour
             jump_button.SetActive(false);
         }
 
+
+    }
+   
+
+
+    
+    public void Restart()
+    {
+        if (!ispc)
+        {
+            up_button.SetActive(true);
+            down_button.SetActive(true);
+            right_button.SetActive(true);
+            left_button.SetActive(true);
+            jump_button.SetActive(true);
+        }
        
+        transform.position = new Vector3(X, Y, Z);
+        right_flag = false;
+        left_flag = false;
+        walk_flag = false;
+        back_flag = false;
     }
 
     public void jump()
     {
-        rb.velocity = new Vector3(0, 16, 0);
+        rb.velocity = new Vector3(0, 20, 0);
     }
 
     
@@ -328,19 +357,7 @@ public class Player_con : MonoBehaviour
         transform.position = new Vector3(x + defPosition.x, defPosition.y, z + defPosition.z);
     }
 
-    public void Restart()
-    {
-        up_button.SetActive(true);
-        down_button.SetActive(true);
-        right_button.SetActive(true);
-        left_button.SetActive(true);
-        jump_button.SetActive(true);
-        transform.position = new Vector3(X, Y, Z);
-        right_flag = false;
-        left_flag = false;
-        walk_flag = false;
-        back_flag = false;
-    }
+   
 
 
 }
