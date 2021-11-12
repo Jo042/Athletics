@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class Player_con : MonoBehaviour
 {
     public bool ispc = false;
+    bool forceStop = false;
     private Animator anim;
-    public bool isjump = false;
+     bool isjump = false;
     Rigidbody rb;
     private bool gimmick4 = false;
     public float speed_w = 10;
@@ -28,11 +29,7 @@ public class Player_con : MonoBehaviour
     private int R;
     [SerializeField] GameObject resultPanel;
     [SerializeField] GameObject clearPanel;
-    [SerializeField] GameObject up_button;
-    [SerializeField] GameObject down_button;
-    [SerializeField] GameObject left_button;
-    [SerializeField] GameObject right_button;
-    [SerializeField] GameObject jump_button;
+    [SerializeField] GameObject player_button;
     bool right_flag = false;
     bool left_flag = false;
     bool walk_flag = false;
@@ -60,7 +57,11 @@ public class Player_con : MonoBehaviour
         defPosition = transform.position;
         if (Input.GetKey(KeyCode.W))
         {
-            iswalk();
+            if (!forceStop)
+            {
+                iswalk();
+            }
+            
         }
         else
         {
@@ -69,7 +70,11 @@ public class Player_con : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            isbackwalk();
+            if (!forceStop)
+            {
+                isbackwalk();
+            }
+            
         }
         else
         {
@@ -78,7 +83,11 @@ public class Player_con : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            isrightwalk();
+            if (!forceStop)
+            {
+                isrightwalk();
+            }
+           
         }
         else
         {
@@ -87,7 +96,11 @@ public class Player_con : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            isleftwalk();
+            if (!forceStop)
+            {
+                isleftwalk();
+            }
+           
         }
         else
         {
@@ -220,6 +233,7 @@ public class Player_con : MonoBehaviour
 
     }
 
+  
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -275,41 +289,31 @@ public class Player_con : MonoBehaviour
 
         if (collision.gameObject.tag == "Finish")
         {
-            up_button.SetActive(false);
-            down_button.SetActive(false);
-            right_button.SetActive(false);
-            left_button.SetActive(false);
-            jump_button.SetActive(false);
+            forceStop = true;
+            player_button.SetActive(false);
             resultPanel.SetActive(true);
         }
 
         if (collision.gameObject.tag == "Goal")
         {
             clearPanel.SetActive(true);
-            up_button.SetActive(false);
-            down_button.SetActive(false);
-            right_button.SetActive(false);
-            left_button.SetActive(false);
-            jump_button.SetActive(false);
+            player_button.SetActive(false);
+
         }
-
-
     }
-   
-
-
     
     public void Restart()
     {
         if (!ispc)
         {
-            up_button.SetActive(true);
-            down_button.SetActive(true);
-            right_button.SetActive(true);
-            left_button.SetActive(true);
-            jump_button.SetActive(true);
+            forceStop = false;
+            player_button.SetActive(true);
         }
-       
+        else
+        {
+            player_button.SetActive(false);
+        }
+        forceStop = false;
         transform.position = new Vector3(X, Y, Z);
         right_flag = false;
         left_flag = false;
@@ -322,16 +326,31 @@ public class Player_con : MonoBehaviour
         rb.velocity = new Vector3(0, 20, 0);
     }
 
-    
-
     void OnCollisionExit(Collision col)
     {
         if (col.gameObject.tag == "Ground")
         {
             transform.SetParent(null);
+            this.transform.rotation = Quaternion.identity;
         }
     }
-
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "A")
+        {
+            R = Random.Range(1, 3);
+            if (R == 1)
+            {
+                Vector3 force = new Vector3(Random.Range(30, 40), 20, 0);
+                rb.AddForce(force, ForceMode.Impulse);
+            }
+            if (R == 2)
+            {
+                Vector3 force = new Vector3(Random.Range(-30, -40), 20, 0);
+                rb.AddForce(force, ForceMode.Impulse);
+            }
+        }
+    }
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
