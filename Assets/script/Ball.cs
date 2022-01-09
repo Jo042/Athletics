@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public GameObject ball;
 
+    public GameObject ball;
     // Start is called before the first frame update
     void Start()
     {
+
         InvokeRepeating("Copy", 0, 3);
+
     }
 
     // Update is called once per frame

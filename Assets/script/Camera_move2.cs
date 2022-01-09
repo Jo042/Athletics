@@ -35,6 +35,7 @@ public class Camera_move2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Player_con.instance.ispc)
         {
             mousePosition = Input.mousePosition;

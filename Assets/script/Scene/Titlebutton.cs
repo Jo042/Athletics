@@ -9,6 +9,7 @@ public class Titlebutton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         gameObject.GetComponent<Button>().onClick.AddListener(Title);
     }
 
@@ -16,5 +17,6 @@ public class Titlebutton : MonoBehaviour
     void Title()
     {
         SceneManager.LoadScene("StartScene");
+        
     }
 }

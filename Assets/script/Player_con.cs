@@ -98,6 +98,7 @@ public class Player_con : MonoBehaviour
         {
             if (!forceStop)
             {
+               
                 isleftwalk();
             }
            
@@ -125,7 +126,6 @@ public class Player_con : MonoBehaviour
         if (resultPanel.activeSelf)
         {
             Time.timeScale = 0f;
-
         }
         else
         {
