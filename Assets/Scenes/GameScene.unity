@@ -1118,7 +1118,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17118
+  m_Name: pb_Mesh19132
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -3567,6 +3567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 316594658}
+  - component: {fileID: 316594659}
   m_Layer: 5
   m_Name: Status
   m_TagString: Untagged
@@ -3597,6 +3598,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &316594659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316594657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e1952232854a44890a989e562eccd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heart:
+  - {fileID: 1622179050}
+  - {fileID: 1101622580}
+  - {fileID: 741402595}
 --- !u!1 &326415382
 GameObject:
   m_ObjectHideFlags: 0
@@ -5669,6 +5686,7 @@ MonoBehaviour:
   speed_s: -9
   speed_d: 8
   speed_a: -8
+  savebutton: {fileID: 0}
   slope: {fileID: 1095780089}
   resultPanel: {fileID: 1537423112}
   clearPanel: {fileID: 665019812}
@@ -21331,7 +21349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 271.4, y: 143.9}
+  m_AnchoredPosition: {x: 327.8, y: 158.18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &741402597
@@ -24180,7 +24198,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17548
+  m_Name: pb_Mesh19578
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -24985,7 +25003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 230.9, y: 143.9}
+  m_AnchoredPosition: {x: 284.8, y: 158.18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101622582
@@ -39002,7 +39020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 191.1, y: 143.9}
+  m_AnchoredPosition: {x: 239.8, y: 158.18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622179052
@@ -60425,7 +60443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2105017749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60910,5 +60928,10 @@ PrefabInstance:
       propertyPath: player_button
       value: 
       objectReference: {fileID: 1405899583}
+    - target: {fileID: 8495249858989691776, guid: b27b62283116f264aa6869947ce5fa2b,
+        type: 3}
+      propertyPath: savebutton
+      value: 
+      objectReference: {fileID: 377897365}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b27b62283116f264aa6869947ce5fa2b, type: 3}

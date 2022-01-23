@@ -16,6 +16,7 @@ public class Player_con : MonoBehaviour
     public float speed_s = 10;
     public float speed_d = 10;
     public float speed_a = 10;
+    public GameObject savebutton;
     private int speed;                //オブジェクトのスピード
     private int radius;               //円を描く半径
     private Vector3 defPosition;      //defPositionをVector3で定義する。
@@ -36,6 +37,7 @@ public class Player_con : MonoBehaviour
     bool back_flag = false;
     bool buttonpushing = false;
     public static Player_con instance;
+    private int i = 0;
     private void Awake()
     {
         instance = this;
@@ -54,6 +56,7 @@ public class Player_con : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         defPosition = transform.position;
         if (Input.GetKey(KeyCode.W))
         {
@@ -292,6 +295,16 @@ public class Player_con : MonoBehaviour
             forceStop = true;
             player_button.SetActive(false);
             resultPanel.SetActive(true);
+            Heart.instance.Destroy(i);
+            i++;
+        }
+        if(i >= 3)
+        {
+            savebutton.SetActive(false);
+        }
+        else
+        {
+            savebutton.SetActive(true);
         }
 
         if (collision.gameObject.tag == "Goal")

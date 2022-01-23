@@ -10,5 +10,9 @@ public class Heart : MonoBehaviour
         instance = this;
     }
 
- 
+    public GameObject[] heart;
+    public void Destroy(int i)
+    {
+        heart[i].SetActive(false);
+    }
 }
