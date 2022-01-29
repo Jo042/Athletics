@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System;
-using GoogleMobileAds.Api;
+//using GoogleMobileAds.Api;
 
 public class AdMobBanner : MonoBehaviour
-{
+{/*
     //やること
     //1.バナー広告IDを入力
     //2.バナーの表示位置　(現状表示位置は下になっています。)
@@ -18,6 +18,7 @@ public class AdMobBanner : MonoBehaviour
     {
         RequestBanner();//アダプティブバナーを表示する関数 呼び出し
     }
+
 
     //ボタン等に割り付けて使用
     //バナーを表示する関数
@@ -74,9 +75,7 @@ public class AdMobBanner : MonoBehaviour
 
 
         //リクエストを生成
-        AdRequest adRequest = new AdRequest.Builder()
-            .AddTestDevice(AdRequest.TestDeviceSimulator)//シュミレーター表示用            
-            .Build();
+        AdRequest adRequest = new AdRequest.Builder().Build();
 
         //広告表示
         bannerView.LoadAd(adRequest);
@@ -94,9 +93,9 @@ public class AdMobBanner : MonoBehaviour
     //バナー読み込み失敗 となった時に起動する関数
     public void HandleAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Debug.Log("バナー読み込み失敗" + args.Message);//args.Message:エラー内容        
+        Debug.Log("バナー読み込み失敗" + args.LoadAdError);//args.LoadAdError:エラー内容 
     }
 
     #endregion
-
+    */
 }
