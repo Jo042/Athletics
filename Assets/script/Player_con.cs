@@ -28,6 +28,7 @@ public class Player_con : MonoBehaviour
     private float Y = 1.6f;
     private float Z = 0;
     private int R;
+    public GameObject menuPanel;
     [SerializeField] GameObject resultPanel;
     [SerializeField] GameObject clearPanel;
     [SerializeField] GameObject player_button;
@@ -136,6 +137,15 @@ public class Player_con : MonoBehaviour
 
         }
 
+        if (menuPanel.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
         if (right_flag)
         {
 
@@ -190,7 +200,7 @@ public class Player_con : MonoBehaviour
     {
         anim.SetBool("walk", true);
         Vector3 force = new Vector3(0, 0, speed_w);
-        if (rb.velocity.magnitude < 10.0f)
+        if (rb.velocity.magnitude < 10.0f && !resultPanel.activeSelf && !menuPanel.activeSelf)
         {
             rb.AddForce(force);
         }
@@ -200,7 +210,7 @@ public class Player_con : MonoBehaviour
     {
         anim.SetBool("back_walk", true);
         Vector3 force = new Vector3(0, 0, speed_s);
-        if (rb.velocity.magnitude < 10.0f)
+        if (rb.velocity.magnitude < 10.0f && !resultPanel.activeSelf && !menuPanel.activeSelf)
         {
             rb.AddForce(force);
         }
@@ -210,7 +220,7 @@ public class Player_con : MonoBehaviour
     {
         anim.SetBool("right_waik", true);
         Vector3 force = new Vector3(speed_d, 0, 0);
-        if (rb.velocity.magnitude < 10.0f)
+        if (rb.velocity.magnitude < 10.0f && !resultPanel.activeSelf && !menuPanel.activeSelf)
         {
             rb.AddForce(force);
         }
@@ -220,7 +230,7 @@ public class Player_con : MonoBehaviour
     {
         anim.SetBool("left_walk", true);
         Vector3 force = new Vector3(speed_a, 0, 0);
-        if (rb.velocity.magnitude < 10.0f)
+        if (rb.velocity.magnitude < 10.0f && !resultPanel.activeSelf && !menuPanel.activeSelf)
         {
             rb.AddForce(force);
         }
