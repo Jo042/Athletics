@@ -160,8 +160,8 @@ public class Camera_move2 : MonoBehaviour
             {
                 mouseInputX = touch_right.deltaPosition.x;
                 mouseInputY = touch_right.deltaPosition.y;
-                transform.RotateAround(targetPos, Vector3.up, mouseInputX * Time.deltaTime * 20f);
-                transform.RotateAround(targetPos, transform.right, mouseInputY * Time.deltaTime * 20f);
+                transform.RotateAround(targetPos, Vector3.up, mouseInputX * Time.deltaTime * 10f);
+                transform.RotateAround(targetPos, transform.right, mouseInputY * Time.deltaTime * 10f);
 
             }
             else if (Input.GetMouseButtonUp(0))

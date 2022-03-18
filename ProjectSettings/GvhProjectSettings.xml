@@ -1,10 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <projectSettings>
   <projectSetting name="com.google.external-dependency-managerAnalyticsCookie" value="d6bb6235fd6b431cbd3d6c16c6057800" />
   <projectSetting name="com.google.external-dependency-managerAnalyticsEnabled" value="True" />
   <projectSetting name="Google.IOSResolver.AutoPodToolInstallInEditor" value="True" />
   <projectSetting name="Google.IOSResolver.CocoapodsIntegrationMethod" value="1" />
+  <projectSetting name="Google.IOSResolver.PodfileAddUseFrameworks" value="True" />
+  <projectSetting name="Google.IOSResolver.PodfileAllowPodsInMultipleTargets" value="True" />
+  <projectSetting name="Google.IOSResolver.PodfileAlwaysAddMainTarget" value="True" />
   <projectSetting name="Google.IOSResolver.PodfileEnabled" value="True" />
+  <projectSetting name="Google.IOSResolver.PodfileStaticLinkFrameworks" value="True" />
   <projectSetting name="Google.IOSResolver.PodToolExecutionViaShellEnabled" value="True" />
+  <projectSetting name="Google.IOSResolver.PodToolShellExecutionSetLang" value="True" />
   <projectSetting name="Google.IOSResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.PackageManagerResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.VersionHandler.VerboseLoggingEnabled" value="False" />

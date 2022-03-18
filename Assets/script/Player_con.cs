@@ -17,6 +17,7 @@ public class Player_con : MonoBehaviour
     public float speed_d = 10;
     public float speed_a = 10;
     public GameObject savebutton;
+    public GameObject RewardButton;
     private int speed;                //オブジェクトのスピード
     private int radius;               //円を描く半径
     private Vector3 defPosition;      //defPositionをVector3で定義する。
@@ -29,9 +30,9 @@ public class Player_con : MonoBehaviour
     private float Z = 0;
     private int R;
     public GameObject menuPanel;
-    [SerializeField] GameObject resultPanel;
-    [SerializeField] GameObject clearPanel;
-    [SerializeField] GameObject player_button;
+    [SerializeField] GameObject resultPanel = default;
+    [SerializeField] GameObject clearPanel = default;
+    [SerializeField] GameObject player_button = default;
     bool right_flag = false;
     bool left_flag = false;
     bool walk_flag = false;
@@ -39,6 +40,7 @@ public class Player_con : MonoBehaviour
     bool buttonpushing = false;
     public static Player_con instance;
     private int i = 0;
+    private bool RewardFlag = true;
     private void Awake()
     {
         instance = this;
@@ -50,7 +52,7 @@ public class Player_con : MonoBehaviour
         anim = GetComponent<Animator>();
         speed = 1;
         radius = 1;
-
+        savebutton.SetActive(true);
         Restart();
     }
 
@@ -307,14 +309,17 @@ public class Player_con : MonoBehaviour
             resultPanel.SetActive(true);
             Heart.instance.Destroy(i);
             i++;
+            Debug.Log(i);
         }
-        if(i >= 3)
+        if(i >= 3 && RewardFlag == true)
         {
             savebutton.SetActive(false);
+            RewardButton.SetActive(true);
+            RewardFlag = false;
         }
         else
         {
-            savebutton.SetActive(true);
+            
         }
 
         if (collision.gameObject.tag == "Goal")
@@ -324,7 +329,17 @@ public class Player_con : MonoBehaviour
 
         }
     }
-    
+
+    public void plus()
+    {
+        i--;
+        Heart.instance.backHP(i);
+        //RewardButton.SetActive(false);
+        //savebutton.SetActive(true);
+        Debug.Log(i);
+    }
+
+
     public void Restart()
     {
         if (!ispc)
@@ -384,10 +399,10 @@ public class Player_con : MonoBehaviour
 
         if(collision.gameObject == slope)
         {
-            speed_w = 14;
-            speed_a = -8;
-            speed_s = -13;
-            speed_d = 8;
+            speed_w = 45;
+            speed_a = -43;
+            speed_s = -43;
+            speed_d = 43;
         }
     }
 

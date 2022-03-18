@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Savebutton : MonoBehaviour
 {
-    [SerializeField] GameObject resultPanel;
+    [SerializeField] GameObject resultPanel = default;
     public GameObject owner;
     // Start is called before the first frame update
     void Start()

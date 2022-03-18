@@ -15,4 +15,8 @@ public class Heart : MonoBehaviour
     {
         heart[i].SetActive(false);
     }
+    public void backHP(int i)
+    {
+        heart[i].SetActive(true);
+    }
 }
