@@ -57,9 +57,8 @@ public class Player_con : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
         defPosition = transform.position;
         if (Input.GetKey(KeyCode.W))
         {
@@ -67,7 +66,7 @@ public class Player_con : MonoBehaviour
             {
                 iswalk();
             }
-            
+
         }
         else
         {
@@ -80,7 +79,7 @@ public class Player_con : MonoBehaviour
             {
                 isbackwalk();
             }
-            
+
         }
         else
         {
@@ -93,7 +92,7 @@ public class Player_con : MonoBehaviour
             {
                 isrightwalk();
             }
-           
+
         }
         else
         {
@@ -104,10 +103,10 @@ public class Player_con : MonoBehaviour
         {
             if (!forceStop)
             {
-               
+
                 isleftwalk();
             }
-           
+
         }
         else
         {
@@ -171,8 +170,15 @@ public class Player_con : MonoBehaviour
             anim.SetBool("back_walk", true);
             isbackwalk();
         }
-
     }
+
+
+    //void Update()
+    //{
+        
+      
+
+    //}
     public void right_change(bool flag)
     {
         right_flag = flag;
